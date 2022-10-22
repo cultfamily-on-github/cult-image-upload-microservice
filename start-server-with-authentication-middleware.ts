@@ -17,4 +17,6 @@ const activateMiddlewareForSpecificRoutesOptions = [{
     middlewareFunction: authenticationMiddlewareFunction
 }]
 
-ImageUploadServer.getInstance(port, activateMiddlewareForSpecificRoutesOptions).start()
+const targetUploadsFolder = "./cult-uploads"
+
+ImageUploadServer.getInstance(port, targetUploadsFolder, activateMiddlewareForSpecificRoutesOptions).start()

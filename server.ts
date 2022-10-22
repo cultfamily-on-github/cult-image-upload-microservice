@@ -3,12 +3,13 @@ import { express, formidableMiddleware } from "./deps.ts"
 export class ImageUploadServer {
 
 	private static instance: ImageUploadServer
-	private static uploadsFolder = `${Deno.cwd()}/cult-uploads`
+	private static uploadsFolder: string
 
-	public static getInstance(port: number, activateMiddlewareForSpecificRoutesOptions?: any[]) {
+	public static getInstance(port: number, targetFolderRelativeToCurrentFolder: string = "./", activateMiddlewareForSpecificRoutesOptions: any[] = []) {
 		if (ImageUploadServer.instance === undefined) {
 			if (port > 0) {
 				ImageUploadServer.instance = new ImageUploadServer(port, activateMiddlewareForSpecificRoutesOptions)
+			 	ImageUploadServer.uploadsFolder = `${Deno.cwd()}/${targetFolderRelativeToCurrentFolder}`
 			} else {
 				console.log("please specify a port by giving a parameter like 3000")
 			}
@@ -22,7 +23,7 @@ export class ImageUploadServer {
 	private activateMiddlewareForSpecificRoutesOptions: any[] = []
 
 
-	private constructor(port: number, activateMiddlewareForSpecificRoutesOptions: any[] = []) { // constructor is private to adhere to singleton pattern
+	private constructor(port: number, activateMiddlewareForSpecificRoutesOptions: any[]) { // constructor is private to adhere to singleton pattern
 		this.port = port
 		if (activateMiddlewareForSpecificRoutesOptions.length > 0) { // advanced mode 
 			console.log("configuring middleware usage")
