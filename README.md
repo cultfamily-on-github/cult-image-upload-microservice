@@ -1,0 +1,47 @@
+# Image Upload Server
+After having spent many hours looking for a simple and actually working image upload solution for Deno, I decided to program and publish this module. 
+
+This Deno Module supports the [cultmagazine.org](https://cultmagazine.org).  
+
+
+## Usage
+
+### Basic
+```ts
+import { ImageUploadServer } from "./mod.ts"
+
+const port = 8048 // you can choose any port where the ImageUploadServer shall serve
+
+ImageUploadServer.getInstance(port).start()
+```
+
+### Advanced 
+If you want to use an authentication function for specific routes, you can do it as follows:
+```ts
+import { ImageUploadServer } from "./mod.ts"
+
+const port = 8048 // you can choose any port where the ImageUploadServer shall serve
+
+const authenticationMiddlewareFunction = (req, res, next) => {
+    console.log(`executing authenticationMiddlewareFunction`)
+    const theMeaningOfLife = 42
+    if (theMeaningOfLife === 42) {
+        next()
+    } else {
+        console.log("someone might want to update the meaning of life")
+    }
+}
+
+const activateMiddlewareForSpecificRoutesOptions = [{
+    route: "/api/v1/uploadImage",
+    middlewareFunction: authenticationMiddlewareFunction
+}]
+
+ImageUploadServer.getInstance(port, activateMiddlewareForSpecificRoutesOptions).start()
+```
+
+## Learnings During This Project
+Formidable is formidable.  
+https://github.com/node-formidable/formidable#api
+
+https://stackoverflow.com/questions/29157732/how-to-send-image-to-client-using-express-node-js
