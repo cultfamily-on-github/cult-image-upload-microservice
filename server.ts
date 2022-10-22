@@ -125,7 +125,7 @@ export class ImageUploadServer {
 
 			try {
 				await this.app.listen(options);
-				console.log(`server has started on https://localhost:${this.port} 🚀`);
+				console.log(`server has started on https://localhost:${this.port} 🚀 with the following options: ${JSON.stringify(options)}`);
 			} catch (error) {
 				console.log(`shit happened: ${error}`);
 			}
