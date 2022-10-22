@@ -5,10 +5,7 @@ This [Deno Module](https://deno.land/x/cult_image_upload_server) supports the [c
 
 
 ## Usage
-
-### Basic
 At the moment it is still necessary to git clone this repo because https://deno.com/blog/v1.25#experimental-npm-support is still experimental (I use e.g. npm:express and npm:formidable which are considered "local modules"). Let's wait for some more magic by Ryan Dahl and Friends before improving the programmer experience even further. 
-
 ```sh
 
 git clone https://github.com/cultfamily-on-github/cult-image-upload-microservice.git
@@ -16,53 +13,26 @@ cd cult-image-upload-microservice
 
 ```
 
-... then you can Do things like 
+### Basic
 
-```ts
-// import { ImageUploadServer } from "https://deno.land/x/cult_image_upload_server/mod.ts" // not yet working because e.g. npm:express is seen as a local module
-import { ImageUploadServer } from "./mod.ts"
+```sh
 
-const port = 8048 // you can choose any port where the ImageUploadServer shall serve
+deno run --allow-net --allow-read --allow-write --unstable --allow-env start-server.ts 8048
 
-ImageUploadServer.getInstance(port).start()
-
-// visit http://localhost:8048 and do the obvious :) enjoy be happy and support the CULT
+# visit http://localhost:8048 and do the obvious :) enjoy be happy and support the CULT
 
 ```
+
 
 ### Advanced 
-If you want to use an authentication function for specific routes, you can do it as follows:
-```ts
-import { ImageUploadServer } from "./mod.ts"
+If you want to use e.g. an authentication middleware for specific routes you can check and execute ... start-server-with-authentication-middleware.ts
+```sh
 
-const port = 8048 // you can choose any port where the ImageUploadServer shall serve
+deno run --allow-net --allow-read --allow-write --unstable --allow-env start-server-with-authentication-middleware.ts 8048
 
-const authenticationMiddlewareFunction = (req, res, next) => {
-    console.log(`executing authenticationMiddlewareFunction`)
-    const theMeaningOfLife = 42
-    if (theMeaningOfLife === 42) {
-        next()
-    } else {
-        console.log("someone might want to update the meaning of life")
-    }
-}
-
-const activateMiddlewareForSpecificRoutesOptions = [{
-    route: "/api/v1/uploadImage",
-    middlewareFunction: authenticationMiddlewareFunction
-}]
-
-ImageUploadServer.getInstance(port, activateMiddlewareForSpecificRoutesOptions).start()
-
-// visit http://localhost:8048 and do the obvious :) enjoy be happy and support the CULT
+# visit http://localhost:8048 and do the obvious :) enjoy be happy and support the CULT
 
 ```
-
-## Learnings During This Project
-Formidable is formidable.  
-https://github.com/node-formidable/formidable#api
-
-https://stackoverflow.com/questions/29157732/how-to-send-image-to-client-using-express-node-js
 
 
 ## Donations
