@@ -1,4 +1,4 @@
-import { ImageUploadServer } from "https://deno.land/x/cult_image_upload_server/mod.ts"
+import { ImageUploadServer } from "./mod.ts"
 
 const port = 8048 // you can choose any port where the ImageUploadServer shall serve
 
