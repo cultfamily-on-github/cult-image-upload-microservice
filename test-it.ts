@@ -1,6 +1,6 @@
-import { ImageUploadServer } from "./mod.ts"
+import { ImageUploadServer } from "https://deno.land/x/cult_image_upload_server/mod.ts"
 
-const port = Number(Deno.args[0])
+const port = 8048 // you can choose any port where the ImageUploadServer shall serve
 
 const authenticationMiddlewareFunction = (req, res, next) => {
     console.log(`executing authenticationMiddlewareFunction`)
