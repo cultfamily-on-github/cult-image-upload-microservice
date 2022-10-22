@@ -13,6 +13,9 @@ import { ImageUploadServer } from "https://deno.land/x/cult_image_upload_server/
 const port = 8048 // you can choose any port where the ImageUploadServer shall serve
 
 ImageUploadServer.getInstance(port).start()
+
+// visit http://localhost:8048 and do the obvious :) enjoy be happy and support the CULT
+
 ```
 
 ### Advanced 
@@ -38,6 +41,9 @@ const activateMiddlewareForSpecificRoutesOptions = [{
 }]
 
 ImageUploadServer.getInstance(port, activateMiddlewareForSpecificRoutesOptions).start()
+
+// visit http://localhost:8048 and do the obvious :) enjoy be happy and support the CULT
+
 ```
 
 ## Learnings During This Project
