@@ -1,15 +1,23 @@
 import { express, formidableMiddleware } from "./deps.ts"
-
+import { exists } from "https://deno.land/std/fs/mod.ts"
 export class ImageUploadServer {
 
 	private static instance: ImageUploadServer
 	private static uploadsFolder: string
 
-	public static getInstance(port: number, targetFolderRelativeToCurrentFolder: string = "./", activateMiddlewareForSpecificRoutesOptions: any[] = []) {
+	public static async getInstance(port: number, targetFolderRelativeToCurrentFolder: string = "./", activateMiddlewareForSpecificRoutesOptions: any[] = []) {
 		if (ImageUploadServer.instance === undefined) {
 			if (port > 0) {
 				ImageUploadServer.instance = new ImageUploadServer(port, activateMiddlewareForSpecificRoutesOptions)
 			 	ImageUploadServer.uploadsFolder = `${Deno.cwd()}/${targetFolderRelativeToCurrentFolder}`
+				if (await exists(ImageUploadServer.uploadsFolder)) {
+					console.log(`perfect - the target upload folder is ready to receive fancy images ${ImageUploadServer.uploadsFolder}.`)
+				} else {
+					console.log(`I create the target upload folder ${ImageUploadServer.uploadsFolder}.`)
+					await Deno.mkdir(ImageUploadServer.uploadsFolder);
+				}
+
+				
 			} else {
 				console.log("please specify a port by giving a parameter like 3000")
 			}
