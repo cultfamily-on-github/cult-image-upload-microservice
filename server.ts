@@ -103,10 +103,10 @@ export class ImageUploadServer {
 
 		} else {
 
-			const pathToCerts = "`/etc/letsencrypt/live"
 			const domainName = "cultdonations.org" // as an individual example
-			const pathToCertFile = `${pathToCerts}/${domainName}/fullchain.pem`
-			const pathToKeyFile = `${pathToCerts}/${domainName}/privkey.pem`
+			const pathToCerts = `/etc/letsencrypt/live/${domainName}`
+			const pathToCertFile = `${pathToCerts}/fullchain.pem`
+			const pathToKeyFile = `${pathToCerts}/privkey.pem`
 
 			console.log(`reading cert file from ${pathToCertFile}`);
 			console.log(`reading key file from ${pathToKeyFile}`);
