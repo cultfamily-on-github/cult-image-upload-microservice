@@ -28,7 +28,7 @@ deno run --allow-net --allow-read --allow-write --unstable --allow-env start-ser
 
 
 ### Advanced 
-If you want to use e.g. an authentication middleware for specific routes you can check and execute ... start-server-with-authentication-middleware.ts
+If you want to use e.g. an authentication middleware for specific routes you can check and execute  [start-server-with-authentication-middleware.ts](https://github.com/cultfamily-on-github/cult-image-upload-microservice/blob/main/start-server-with-authentication-middleware.ts)
 ```sh
 
 deno run --allow-net --allow-read --allow-write --unstable --allow-env start-server-with-authentication-middleware.ts 8048
